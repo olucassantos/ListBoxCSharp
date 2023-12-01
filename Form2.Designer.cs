@@ -33,6 +33,7 @@
             this.btnAdicionar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnRemover = new System.Windows.Forms.Button();
+            this.btnEditar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listBox1
@@ -82,6 +83,17 @@
             this.btnRemover.UseVisualStyleBackColor = true;
             this.btnRemover.Click += new System.EventHandler(this.btnRemover_Click);
             // 
+            // btnEditar
+            // 
+            this.btnEditar.Enabled = false;
+            this.btnEditar.Location = new System.Drawing.Point(381, 68);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(95, 30);
+            this.btnEditar.TabIndex = 2;
+            this.btnEditar.Text = "Editar";
+            this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -89,6 +101,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnRemover);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnAdicionar);
             this.Controls.Add(this.txtNovoItem);
             this.Controls.Add(this.listBox1);
@@ -106,5 +119,6 @@
         private System.Windows.Forms.Button btnAdicionar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnRemover;
+        private System.Windows.Forms.Button btnEditar;
     }
 }

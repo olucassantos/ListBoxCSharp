@@ -58,6 +58,7 @@ namespace CestasDaPrima
         {
             // Ativa o botão de remover
             btnRemover.Enabled = true;
+            btnEditar.Enabled = true;
         }
 
         private void btnRemover_Click(object sender, EventArgs e)
@@ -81,6 +82,20 @@ namespace CestasDaPrima
             btnRemover.Enabled = false;
 
             AtualizaListBox();
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            // Pega o indice o item selecionado na lista
+            int indiceItem = listBox1.SelectedIndex;
+
+            // Pega o item da lista
+            string item = categorias[indiceItem];
+
+            txtNovoItem.Text = item;
+
+            btnAdicionar.Enabled = false;
+            btnEditar.Text = "Salvar";
         }
     }
 }
