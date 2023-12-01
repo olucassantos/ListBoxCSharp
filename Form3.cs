@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.ListView;
 
 namespace CestasDaPrima
 {
@@ -75,6 +76,7 @@ namespace CestasDaPrima
             // Limpa os itens da lista
             lsvItens.Items.Clear();
 
+            // Percorre os itens da lista, adicionando no list View
             foreach (Produto produto in lista_produtos)
             {
                 AdicionarItemListView(produto);
@@ -105,6 +107,24 @@ namespace CestasDaPrima
             produto.Preco = 19.9m;
 
             AdicionarItemListView(produto);
+        }
+
+        private void btnApagar_Click(object sender, EventArgs e)
+        {
+            // Pega os itens selecionados de um ListView
+            //SelectedListViewItemCollection itens = lsvItens.SelectedItems;
+
+            // Percorre cada item selecionado no ListView
+            foreach (ListViewItem item in lsvItens.SelectedItems)
+            {
+                int id = int.Parse(item.Text);
+
+                Produto produto = lista_produtos.Find(prod => prod.Id == id);
+
+                lista_produtos.Remove(produto);
+            }
+
+            AtualizaItensListView();
         }
     }
 }
