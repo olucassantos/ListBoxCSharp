@@ -131,6 +131,11 @@
             // numPreco
             // 
             this.numPreco.Location = new System.Drawing.Point(6, 97);
+            this.numPreco.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this.numPreco.Name = "numPreco";
             this.numPreco.Size = new System.Drawing.Size(164, 26);
             this.numPreco.TabIndex = 2;
@@ -140,6 +145,11 @@
             // 
             this.numID.Enabled = false;
             this.numID.Location = new System.Drawing.Point(6, 45);
+            this.numID.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this.numID.Name = "numID";
             this.numID.Size = new System.Drawing.Size(120, 26);
             this.numID.TabIndex = 2;

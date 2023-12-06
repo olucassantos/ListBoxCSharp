@@ -237,7 +237,11 @@ namespace CestasDaPrima
             // Caso não seja nulo, encontrou um item
             if (produto != null)
             {
-                //lista_produtos.IndexOf(produto);
+                // Busca o index do item a ser pesquisado
+                int index = lista_produtos.FindIndex(item => object.Equals(item, produto));
+
+                Produto produto_editado = new Produto { Id = (int)numID.Value, Nome = txtNome.Text, Preco = numPreco.Value };
+                lista_produtos[index] = produto_editado;
             }
             else
             {
