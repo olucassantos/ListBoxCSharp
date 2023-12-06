@@ -100,11 +100,13 @@ namespace CestasDaPrima
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
-            Produto produto;
+            //Produto produto;
 
-            produto.Id = 1;
-            produto.Nome = "Chocolate";
-            produto.Preco = 19.9m;
+            //produto.Id = 1;
+            //produto.Nome = "Chocolate";
+            //produto.Preco = 19.9m;
+
+            Produto produto = new Produto { Id = 1, Nome = "Chocolate", Preco = 19.9m };
 
             AdicionarItemListView(produto);
         }
@@ -126,5 +128,156 @@ namespace CestasDaPrima
 
             AtualizaItensListView();
         }
+
+        private void btnAdicionar_Click_1(object sender, EventArgs e)
+        {
+            // Mostrar o formulário
+            grbFormulario.Visible = true;
+
+            // Foca no campo Nome
+            txtNome.Focus();
+
+            // Desabilitar o botão Novo Item
+            btnAdicionar.Enabled = false;
+            btnEditar.Enabled = false;
+            btnApagar.Enabled = false;
+
+            // Pegar o ultimo ID da lista de produtos
+            numID.Value = PegarUltimoIdLista() + 1;
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            // Busca o ID do produto selecionado
+            foreach (ListViewItem item in lsvItens.SelectedItems)
+            {
+                int id = int.Parse(item.Text);
+
+                Produto produto = lista_produtos.Find(prod => prod.Id == id);
+
+                numID.Value = produto.Id;
+                txtNome.Text = produto.Nome;
+                numPreco.Value = produto.Preco;
+
+                // Para o laço de repetição.
+                break;
+            }
+
+            if (numID.Value == 0)
+                return;
+
+            // Mostrar o formulário
+            grbFormulario.Visible = true;
+
+            // Foca no campo Nome
+            txtNome.Focus();
+
+            // Desabilitar o botão Novo Item
+            btnAdicionar.Enabled = false;
+            btnEditar.Enabled = false;
+            btnApagar.Enabled = false;
+        }
+
+        /*
+            Pega o ultimo ID de uma List<> 
+        */
+        private int PegarUltimoIdLista()
+        {
+            return lista_produtos.Max(produto => produto.Id);
+        }
+
+        /*
+            Fecha o formulário e limpa os campos 
+        */
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            // Esconde o formulário
+            grbFormulario.Visible = false;
+
+            // Habilita os botões
+            btnAdicionar.Enabled = true;
+            btnEditar.Enabled = true;
+            btnApagar.Enabled = true;
+
+            // Limpa os campos
+            txtNome.Clear();
+            numID.Value = 0;
+            numPreco.Value = 0;
+        }
+
+        /*
+            Salva os valores na lista 
+        */
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+            // Validar as informações
+            if (txtNome.Text == "")
+            {
+                MessageBox.Show("O nome do produto não pode ficar em branco!");
+                txtNome.Focus();
+                return;
+            }
+
+            if (numPreco.Value == 0)
+            {
+                MessageBox.Show("O preço do produto não pode ser Zero!");
+                numPreco.Focus();
+                return;
+            }
+
+            if (numID.Value == 0)
+            {
+                return;
+            }
+
+            // Verifica se um ID já existe na lista, caso não existe é adição
+            int id = ((int)numID.Value);
+            Produto? produto = BuscaProdutoId(id);
+
+            // Caso não seja nulo, encontrou um item
+            if (produto != null)
+            {
+                //lista_produtos.IndexOf(produto);
+            }
+            else
+            {
+                // Adiciona um item
+
+                Produto novo_produto = new Produto { 
+                    Id = (int)numID.Value, 
+                    Nome = txtNome.Text, 
+                    Preco = numPreco.Value 
+                };
+
+                lista_produtos.Add(novo_produto);
+            }
+
+            AtualizaItensListView();
+        }
+
+        private Produto? BuscaProdutoId(int Id)
+        {
+            Produto produto = lista_produtos.Find(prod => prod.Id == Id);
+
+            if (produto.Id == 0)
+                return null;
+
+            return produto;
+        }
+
+        /*
+            Pega o ultimo ID de uma List<> 
+        */
+        //private int PegarUltimoIdLista()
+        //{
+        //    int id = 0;
+
+        //    foreach (Produto item in lista_produtos)
+        //    {
+        //        id = item.Id > id ? item.Id : id;
+        //    }
+
+        //    return id;
+        //}
     }
 }
