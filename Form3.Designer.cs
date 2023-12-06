@@ -41,6 +41,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.lstResultadosBusca = new System.Windows.Forms.ListView();
+            this.txtPesquisa = new System.Windows.Forms.TextBox();
             this.grbFormulario.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPreco)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numID)).BeginInit();
@@ -189,11 +191,30 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "ID";
             // 
+            // lstResultadosBusca
+            // 
+            this.lstResultadosBusca.HideSelection = false;
+            this.lstResultadosBusca.Location = new System.Drawing.Point(426, 264);
+            this.lstResultadosBusca.Name = "lstResultadosBusca";
+            this.lstResultadosBusca.Size = new System.Drawing.Size(361, 195);
+            this.lstResultadosBusca.TabIndex = 3;
+            this.lstResultadosBusca.UseCompatibleStateImageBehavior = false;
+            // 
+            // txtPesquisa
+            // 
+            this.txtPesquisa.Location = new System.Drawing.Point(426, 232);
+            this.txtPesquisa.Name = "txtPesquisa";
+            this.txtPesquisa.Size = new System.Drawing.Size(361, 26);
+            this.txtPesquisa.TabIndex = 4;
+            this.txtPesquisa.TextChanged += new System.EventHandler(this.txtPesquisa_TextChanged);
+            // 
             // Form3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(799, 533);
+            this.Controls.Add(this.txtPesquisa);
+            this.Controls.Add(this.lstResultadosBusca);
             this.Controls.Add(this.grbFormulario);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnAdicionar);
@@ -207,6 +228,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numPreco)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numID)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -225,5 +247,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ListView lstResultadosBusca;
+        private System.Windows.Forms.TextBox txtPesquisa;
     }
 }

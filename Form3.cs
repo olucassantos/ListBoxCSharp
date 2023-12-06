@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.ListView;
 
-namespace CestasDaPrima
+namespace CestasDaPrima 
 {
     public partial class Form3 : Form
     {
@@ -67,6 +67,11 @@ namespace CestasDaPrima
             lsvItens.Columns.Add("ID");
             lsvItens.Columns.Add("Nome");
             lsvItens.Columns.Add("Preço");
+
+            lstResultadosBusca.View = View.Details;
+            lstResultadosBusca.Columns.Add("ID");
+            lstResultadosBusca.Columns.Add("Nome");
+            lstResultadosBusca.Columns.Add("Preço");
 
             AtualizaItensListView();
         }
@@ -275,19 +280,27 @@ namespace CestasDaPrima
             numPreco.Value = 0;
         }
 
-        /*
-            Pega o ultimo ID de uma List<> 
-        */
-        //private int PegarUltimoIdLista()
-        //{
-        //    int id = 0;
+        private void txtPesquisa_TextChanged(object sender, EventArgs e)
+        {
+            string pesquisa = txtPesquisa.Text;
 
-        //    foreach (Produto item in lista_produtos)
-        //    {
-        //        id = item.Id > id ? item.Id : id;
-        //    }
+            List<Produto> resultados_busca = lista_produtos.FindAll(
+                prod => prod.Nome.Contains(pesquisa)
+            );
 
-        //    return id;
-        //}
+            lstResultadosBusca.Items.Clear();
+
+            foreach (Produto prod in resultados_busca)
+            {
+                // Cria um item vazio
+                ListViewItem item = new ListViewItem(prod.Id.ToString());
+
+                item.SubItems.Add(prod.Nome);
+                item.SubItems.Add(prod.Preco.ToString("c"));
+
+                // Adiciona o item na listView
+                lstResultadosBusca.Items.Add(item);
+            }
+        }
     }
 }
