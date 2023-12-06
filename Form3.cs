@@ -191,18 +191,7 @@ namespace CestasDaPrima
         */
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            // Esconde o formulário
-            grbFormulario.Visible = false;
-
-            // Habilita os botões
-            btnAdicionar.Enabled = true;
-            btnEditar.Enabled = true;
-            btnApagar.Enabled = true;
-
-            // Limpa os campos
-            txtNome.Clear();
-            numID.Value = 0;
-            numPreco.Value = 0;
+            FechaFormulario();
         }
 
         /*
@@ -256,6 +245,7 @@ namespace CestasDaPrima
                 lista_produtos.Add(novo_produto);
             }
 
+            FechaFormulario();
             AtualizaItensListView();
         }
 
@@ -267,6 +257,22 @@ namespace CestasDaPrima
                 return null;
 
             return produto;
+        }
+
+        void FechaFormulario()
+        {
+            // Esconde o formulário
+            grbFormulario.Visible = false;
+
+            // Habilita os botões
+            btnAdicionar.Enabled = true;
+            btnEditar.Enabled = true;
+            btnApagar.Enabled = true;
+
+            // Limpa os campos
+            txtNome.Clear();
+            numID.Value = 0;
+            numPreco.Value = 0;
         }
 
         /*
